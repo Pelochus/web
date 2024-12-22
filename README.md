@@ -2,6 +2,8 @@
 
 My personal webpage
 
+https://pelochus.duckdns.org/
+
 ## Deploying
 
 ```bash
