@@ -71,7 +71,7 @@ export default function Projects() {
         <Project
           title="Rockobot"
           description="A robot built for a university course. Won the class tournament and received an honors grade."
-          image="/rockobot.jpg"
+          image="/rockobot.webp"
           links={{
             demo: "https://blog.arduino.cc/2023/09/29/can-you-smell-what-the-rockobot-is-cooking/"
           }}

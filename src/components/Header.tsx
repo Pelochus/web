@@ -7,7 +7,7 @@ export default function Header() {
         <div className="flex items-center gap-6">
           <div className="w-24 h-24 rounded-full overflow-hidden bg-white p-1">
             <img 
-              src="/pfp.png" 
+              src="/pfp.webp" 
               alt="Profile" 
               className="w-full h-full object-cover"
             />
