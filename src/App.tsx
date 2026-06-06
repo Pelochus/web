@@ -21,10 +21,10 @@ export default function App() {
           <div className="bg-white rounded-xl shadow-md p-8 backdrop-blur-sm bg-white/90">
             <h2 className="text-2xl font-bold text-slate-800 mb-4">About Me</h2>
             <p className="text-lg text-slate-700 leading-relaxed">
-              Computer Scientist and Engineer focused on low-level development. Skilled in embedded systems, Linux 
-              server administration, and networking. Experienced in time synchronization technologies such as White 
-              Rabbit, PTP, and NTP. Currently working as an Embedded Software Engineer at Safran Electronics & 
-              Defense while pursuing a Master's degree in Data Science & Computer Engineering.
+              Embedded Software Development Engineer at Amazon, focused on real-time media streaming and low-level
+              systems. Experienced in C/C++20, Embedded Linux and real-time, performance-critical systems. 
+              Skilled in time synchronization technologies, swarm robotics, and leveraging GenAI for development 
+              efficiency.
             </p>
           </div>
         </section>
@@ -39,7 +39,7 @@ export default function App() {
 
       <footer className="bg-slate-900 text-slate-400 py-8 mt-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <p>MIT License {new Date().getFullYear()}. Ángel Hurtado Flores. This webpage was last updated on December 2024.</p>
+          <p>MIT License {new Date().getFullYear()}. Ángel Hurtado Flores. This webpage was last updated on June 2026.</p>
         </div>
       </footer>
     </div>

@@ -14,7 +14,7 @@ export default function Header() {
           </div>
           <div>
             <h1 className="text-4xl font-bold mb-2">Ángel Hurtado Flores</h1>
-            <p className="text-xl text-slate-300">Computer Engineer</p>
+            <p className="text-xl text-slate-300">Embedded Software Engineer @ Amazon</p>
           </div>
         </div>
         

@@ -42,11 +42,18 @@ export default function Experience() {
   return (
     <Section id="experience" title="Experience">
       <ExperienceItem
+        title="Embedded Software Development Engineer"
+        company="Amazon — Ring"
+        location="Madrid, Spain"
+        period="06/2025 – Present"
+        skills={['C++20', 'Embedded Linux', 'FreeRTOS', 'Streaming (RTP, SDP, H264)', 'GenAI/Agentic workflows']}
+      />
+      <ExperienceItem
         title="Embedded Software Engineer"
         company="Safran Electronics & Defense"
         location="Granada, Spain"
-        period="09/2024 – Present"
-        skills={['Embedded C', 'Embedded Linux', 'Time synchronization protocols (White Rabbit, PTP, NTP)']}
+        period="09/2024 – 03/2025"
+        skills={['Embedded C', 'Embedded Linux', 'Time synchronization (White Rabbit, PTP, NTP)']}
       />
       <ExperienceItem
         title="Research Assistant"

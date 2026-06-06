@@ -35,17 +35,17 @@ export default function Skills() {
         <SkillCategory
           icon={<Code className="text-blue-600" />}
           title="Programming"
-          skills={['C++', 'C', 'Python', 'Rust', 'Java']}
+          skills={['C++20', 'C', 'Python', 'Rust', 'Java']}
         />
         <SkillCategory
           icon={<Terminal className="text-green-600" />}
           title="DevOps/SysAdmin"
-          skills={['Linux', 'Bash', 'Docker', 'Ansible', 'Git', 'Google Cloud']}
+          skills={['Linux', 'Bash', 'Docker', 'Ansible', 'Git', 'CMake']}
         />
         <SkillCategory
           icon={<Network className="text-purple-600" />}
-          title="Embedded"
-          skills={['Embedded C', 'Embedded Linux', 'Assembly (x86 & ARM)', 'ESP32']}
+          title="Embedded & AI"
+          skills={['Embedded Linux', 'FreeRTOS', 'NPU/Edge AI', 'Agentic Workflows']}
         />
         <SkillCategory
           icon={<MessageSquare className="text-orange-600" />}
