@@ -117,10 +117,10 @@ h2 {
 h2::before {
   content: "";
   position: absolute;
-  left: -0.6rem;
-  top: 0.3em;
-  width: 0.28rem;
-  height: 0.72em;
+  left: -0.62rem;
+  top: -0.25em;
+  width: 0.3rem;
+  height: 1.8em;
   background: linear-gradient(var(--accent), var(--accent-2));
   border-radius: 999px
 }
@@ -196,8 +196,6 @@ header .tagline {
 .pills a,
 .pills .obf { color: #dce7f8 }
 .pills a { display: inline-flex; align-items: center; gap: 0.4rem }
-.pills .ic { flex-shrink: 0 }
-
 .ic { flex-shrink: 0 }
 
 nav {
@@ -218,7 +216,13 @@ nav {
 nav a { color: var(--soft) }
 nav a:hover { color: var(--ink) }
 
+/* The switch is the last flex item and absorbs the leftover space on its
+   left, so it parks itself in the bar's right corner while the index links
+   keep packing from the left. */
 .theme-switch {
+  order: 99;
+  align-self: start;
+  margin: 0 0 0 auto;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -227,8 +231,7 @@ nav a:hover { color: var(--ink) }
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--card);
-  font-size: 0.8rem;
-  order: -1
+  font-size: 0.8rem
 }
 .theme-switch input[type=radio] {
   accent-color: var(--accent);
@@ -261,14 +264,19 @@ section > p { margin: 0.4rem 0 0 }
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem 1rem;
+  gap: 0.3rem 0.6rem;
   color: var(--soft);
   font-size: 0.85rem;
   margin: 0.4rem 0 0
 }
+/* The dot lives at the start of its flex item, so the room in front of it
+   comes from the gap and the room behind it from the margin. */
 .meta .where::before,
 .meta .kind::before,
-.meta .grade::before { content: "·" }
+.meta .grade::before {
+  content: "·";
+  margin: 0 0.6rem 0 0
+}
 
 .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.6rem 0 0 }
 .tags li {
@@ -339,7 +347,14 @@ footer a { color: #e2e8f0 }
 
 /* Contact strings are assembled from fragments so no scraper finds an
    address pattern in the markup; the rendered text is still readable. */
-.obf::after { content: " · angh" "flo" "res" "\40" "gmail" ".com" }
+.obf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem
+}
+/* Contact strings are assembled from fragments so no scraper finds an
+   address pattern in the markup; the rendered text is still readable. */
+.obf::after { content: "angh" "flo" "res" "\40" "gmail" ".com" }
 
 @media (hover: hover) {
   .card { transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease }
