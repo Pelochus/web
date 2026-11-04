@@ -1,113 +1,245 @@
 *,
 ::after,
-::before { box-sizing: border-box }
-
-:root {
-  --bg: #f8fafc;
-  --band: #16213a;
-  --card: #ffffff;
-  --ink: #16213a;
-  --soft: #55627a;
-  --line: #dfe5ee;
-  --accent: #1d4ed8;
-  --on-accent: #ffffff;
-  --pill: #eef2ff;
-  --pill-ink: #3730a3;
-  color-scheme: light dark;
+::before {
+  box-sizing: border-box
 }
 
+:root {
+  --bg: #f5f7fc;
+  --bg-2: #e9effa;
+  --band: #16213a;
+  --band-2: #0e1626;
+  --card: #ffffff;
+  --ink: #17233c;
+  --soft: #54627a;
+  --line: #dbe3ee;
+  --accent: #1d4ed8;
+  --accent-2: #0e7492;
+  --on-accent: #ffffff;
+  --pill: #eaf1ff;
+  --pill-hi: #dbe6ff;
+  --pill-ink: #33427c;
+  --glow-a: rgba(29, 78, 216, 0.09);
+  --glow-b: rgba(56, 189, 248, 0.09);
+  --shadow: 0 1px 2px rgba(23, 35, 60, 0.05), 0 10px 24px rgba(23, 35, 60, 0.06);
+  --shadow-hi: 0 2px 4px rgba(23, 35, 60, 0.07), 0 18px 34px rgba(23, 35, 60, 0.1);
+  color-scheme: light dark
+}
+
+/* Dark palette twice: once for "system says dark and nothing was forced light",
+   once for "dark forced". Specificity is identical, so the forced rule wins by
+   coming last; without :has() the media rule still applies and the page simply
+   follows the system theme. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --band: #0b1221;
-    --card: #1a2334;
+  :root:not(:has(#t-light:checked)) {
+    --bg: #0e1626;
+    --bg-2: #141e33;
+    --band: #0a1120;
+    --band-2: #060b16;
+    --card: #17213a;
     --ink: #e6edf6;
-    --soft: #9aa9bf;
-    --line: #2c3a52;
+    --soft: #97a7c0;
+    --line: #2a3850;
     --accent: #60a5fa;
-    --on-accent: #0b1221;
-    --pill: #1d2c48;
-    --pill-ink: #93c5fd;
+    --accent-2: #38bdf8;
+    --on-accent: #0a1120;
+    --pill: #1c2a46;
+    --pill-hi: #27385c;
+    --pill-ink: #9ec7fb;
+    --glow-a: rgba(96, 165, 250, 0.11);
+    --glow-b: rgba(56, 189, 248, 0.08);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 10px 24px rgba(0, 0, 0, 0.35);
+    --shadow-hi: 0 2px 5px rgba(0, 0, 0, 0.35), 0 18px 34px rgba(0, 0, 0, 0.45)
   }
+}
+
+:root:has(#t-dark:checked) {
+  --bg: #0e1626;
+  --bg-2: #141e33;
+  --band: #0a1120;
+  --band-2: #060b16;
+  --card: #17213a;
+  --ink: #e6edf6;
+  --soft: #97a7c0;
+  --line: #2a3850;
+  --accent: #60a5fa;
+  --accent-2: #38bdf8;
+  --on-accent: #0a1120;
+  --pill: #1c2a46;
+  --pill-hi: #27385c;
+  --pill-ink: #9ec7fb;
+  --glow-a: rgba(96, 165, 250, 0.11);
+  --glow-b: rgba(56, 189, 248, 0.08);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 10px 24px rgba(0, 0, 0, 0.35);
+  --shadow-hi: 0 2px 5px rgba(0, 0, 0, 0.35), 0 18px 34px rgba(0, 0, 0, 0.45)
 }
 
 body {
   margin: 0 auto;
-  max-width: 62rem;
-  padding: 1.25rem 1.1rem;
+  max-width: 64rem;
+  padding: 1.3rem 1.2rem;
   background: var(--bg);
   color: var(--ink);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 0.55rem + 0.5vw, 1.05rem);
+  line-height: 1.62
 }
 
-h1 { font-size: 1.9rem; line-height: 1.15; margin: 0 }
-h2 { font-size: 1.3rem; margin: 2.25rem 0 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line) }
+body::before {
+  content: "";
+  position: fixed;
+  inset: -8rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(56rem 34rem at 86% -4%, var(--glow-a), transparent 62%),
+    radial-gradient(44rem 30rem at 4% 102%, var(--glow-b), transparent 60%),
+    linear-gradient(160deg, var(--bg), var(--bg-2))
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0
+}
+h2 {
+  position: relative;
+  font-size: 1.28rem;
+  margin: 2.4rem 0 0;
+  padding: 0 0 0.5rem;
+  border-width: 0 0 2px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: linear-gradient(90deg, var(--accent), var(--accent-2) 60%, transparent) 1
+}
+h2::before {
+  content: "";
+  position: absolute;
+  left: -0.6rem;
+  top: 0.3em;
+  width: 0.28rem;
+  height: 0.72em;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  border-radius: 999px
+}
 h3 { font-size: 1.05rem; margin: 0 0 0.35rem }
-p { margin: 0 0 0.6rem }
+p { margin: 0 0 0.65rem }
 ul { list-style: none; margin: 0; padding: 0 }
 img { display: block; max-width: 100%; height: auto }
 
 a { color: var(--accent); text-decoration: none }
-a:hover, a:visited { color: var(--accent) }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
-main a:not(.button) { text-decoration: underline; text-decoration-color: var(--soft) }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
+main a:not(.button) {
+  text-decoration: underline;
+  text-decoration-color: var(--soft);
+  text-decoration-thickness: 1px
+}
 
 .muted { color: var(--soft); font-size: 0.92rem }
 
 header,
 nav,
-footer {
-  border-radius: 0.7rem;
-}
+footer { border-radius: 0.8rem }
 
 header {
-  background: var(--band);
-  color: #f8fafc;
-  padding: 1.25rem;
-  margin: 0 0 0.75rem;
+  position: relative;
+  background: linear-gradient(135deg, var(--band), var(--band-2) 80%);
+  color: #f4f7fc;
+  border: 1px solid var(--line);
+  padding: 1.3rem;
+  margin: 0 0 0.85rem
 }
-header .tagline { color: #b6c4d9; text-align: center; margin: 0.15rem 0 0 }
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(112deg, transparent 44%, rgba(255, 255, 255, 0.06) 50%, transparent 56%);
+  background-size: 240% 100%;
+  background-position: -60% 0;
+  pointer-events: none
+}
+header h1 { text-align: center; margin: 1.1rem 0 0 }
+header .tagline {
+  color: #b8c6dd;
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin: 0
+}
 
 .avatar {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 5.6rem;
+  height: 5.6rem;
   object-fit: cover;
   border-radius: 999px;
   border: 2px solid var(--accent);
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.1rem;
+  box-shadow: 0 0 14px var(--glow-b)
 }
-header h1 { text-align: center; margin-bottom: 0.2rem }
-header .tagline { text-align: center }
 
-.pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0 0 }
-.pills li {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  padding: 0.35rem 0.8rem;
-  font-size: 0.88rem;
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.1rem 0 0
 }
-.pills a { color: #dbe6f7; text-decoration: none }
-.pills li:hover { background: rgba(255, 255, 255, 0.16) }
+.pills li {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.88rem
+}
+.pills a,
+.pills .obf { color: #dce7f8 }
+.pills a { display: inline-flex; align-items: center; gap: 0.4rem }
+.pills .ic { flex-shrink: 0 }
+
+.ic { flex-shrink: 0 }
 
 nav {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   background: var(--bg);
   border: 1px solid var(--line);
-  padding: 0.55rem 0.9rem;
-  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.95rem;
+  margin: 0.85rem 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.4rem 1.1rem;
-  font-size: 0.88rem;
+  align-items: center;
+  gap: 0.4rem 1.15rem;
+  font-size: 0.86rem
 }
 nav a { color: var(--soft) }
 nav a:hover { color: var(--ink) }
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.6rem;
+  padding: 0.32rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.8rem;
+  order: -1
+}
+.theme-switch input[type=radio] {
+  accent-color: var(--accent);
+  width: 0.95rem;
+  height: 0.95rem
+}
+.theme-switch label { color: var(--soft); cursor: pointer }
+.theme-switch label[for=t-auto]::before { content: "◐ " }
+.theme-switch label[for=t-light]::before { content: "☀ " }
+.theme-switch label[for=t-dark]::before { content: "☾ " }
+.theme-switch input:checked + label { color: var(--ink); font-weight: 600 }
 
 section { margin: 0 0 1.5rem }
 section > p { margin: 0.4rem 0 0 }
@@ -115,89 +247,156 @@ section > p { margin: 0.4rem 0 0 }
 .card {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 0.6rem;
-  padding: 0.95rem 1.1rem;
-  margin: 0.9rem 0 0;
+  border-radius: 0.7rem;
+  padding: 1rem 1.15rem;
+  margin: 0.95rem 0 0;
+  box-shadow: var(--shadow)
 }
-.card + .card { margin: 0.75rem 0 0 }
-.card h3 + p, .card p + p { margin: 0.4rem 0 0 }
+.card + .card { margin: 0.8rem 0 0 }
 .card p { margin: 0 }
+.card h3 + p,
+.card p + p { margin: 0.4rem 0 0 }
 
-.org { color: var(--soft); margin: 0.2rem 0 0 }
-.meta { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; color: var(--soft); font-size: 0.85rem; margin: 0.35rem 0 0 }
-.meta .where::before { content: "·" }
+.org { color: var(--soft); margin: 0.25rem 0 0 }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  color: var(--soft);
+  font-size: 0.85rem;
+  margin: 0.4rem 0 0
+}
+.meta .where::before,
+.meta .kind::before,
+.meta .grade::before { content: "·" }
 
-.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.55rem 0 0 }
+.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.6rem 0 0 }
 .tags li {
   background: var(--pill);
   color: var(--pill-ink);
   border-radius: 999px;
-  padding: 0.18rem 0.55rem;
-  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem
 }
 
-.links { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0.6rem 0 0; font-size: 0.9rem }
+.highs {
+  list-style: disc;
+  margin: 0.6rem 0 0;
+  padding-left: 1.25rem
+}
+.highs li { margin: 0 0 0.35rem }
+.highs li::marker { color: var(--accent) }
+
+.links { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0.65rem 0 0; font-size: 0.9rem }
 .links a { color: var(--accent) }
 
-.button {
-  background: var(--accent);
-  color: var(--on-accent);
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.9rem;
-  margin: 0.8rem 0 0;
-  text-decoration: none;
-}
-.button:hover { filter: brightness(1.15) }
-
-.fields { display: flex; flex-direction: column; gap: 0.4rem; margin: 0.8rem 0 0 }
+.fields { display: flex; flex-direction: column; gap: 0.45rem; margin: 0.85rem 0 0 }
 .fields li { font-size: 0.92rem }
+.fields li a { display: inline-flex; align-items: center; gap: 0.4rem }
 .fields .plain { color: var(--soft) }
+.fields .when { color: var(--accent) }
 
-#skills,
-#projects { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; align-items: start }
-#skills > h2,
-#projects > h2 { grid-column: 1 / -1 }
-#skills .card,
-#projects .card { margin: 0 }
-
-.card-img { padding: 0; overflow: hidden }
-.card-img > img { border-radius: 0.5rem 0.5rem 0 0 }
-.card-img > .card-body { padding: 0.95rem 1.1rem }
-.card-body h3 { margin: 0 }
+.button {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  border-radius: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.9rem;
+  margin: 0.85rem 0 0;
+  box-shadow: var(--shadow)
+}
 
 footer {
-  background: var(--band);
+  background: linear-gradient(135deg, var(--band), var(--band-2) 80%);
   color: #cbd5e1;
-  padding: 0.9rem 1.1rem;
-  margin: 1.5rem 0 0;
-  font-size: 0.85rem;
+  border: 1px solid var(--line);
+  padding: 0.95rem 1.15rem;
+  margin: 1.6rem 0 0;
+  font-size: 0.85rem
 }
 footer a { color: #e2e8f0 }
 
-@media (max-width: 46rem) {
-  #skills,
-  #projects { grid-template-columns: 1fr }
-  .avatar { width: 4.5rem; height: 4.5rem }
-  h1 { font-size: 1.6rem }
+#skills,
+#certs,
+#projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  align-items: start
+}
+#skills > h2,
+#certs > h2,
+#projects > h2 { grid-column: 1 / -1 }
+#skills .card,
+#certs .card,
+#projects .card { margin: 0 }
+
+.card-img { padding: 0; overflow: hidden }
+.card-img > img { border-radius: 0.6rem 0.6rem 0 0 }
+.card-img > .card-body { padding: 1rem 1.15rem }
+.card-body h3 { margin: 0 }
+.card-img > .card-body > .meta { margin: 0.5rem 0 0 }
+
+/* Contact strings are assembled from fragments so no scraper finds an
+   address pattern in the markup; the rendered text is still readable. */
+.obf::after { content: " · angh" "flo" "res" "\40" "gmail" ".com" }
+
+@media (hover: hover) {
+  .card { transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hi); border-color: var(--accent-2) }
+  .tags li { transition: background 0.2s ease, transform 0.2s ease }
+  .tags li:hover { background: var(--pill-hi); transform: translateY(-1px) }
+  .pills li { transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease }
+  .pills li:hover { background: rgba(255, 255, 255, 0.13); transform: translateY(-1px) }
+  .button { transition: transform 0.22s ease, filter 0.22s ease }
+  .button:hover { transform: translateY(-1px); filter: brightness(1.08) }
+  .avatar { transition: border-color 0.3s ease, box-shadow 0.3s ease }
+  .avatar:hover { border-color: var(--accent-2); box-shadow: 0 0 22px var(--glow-b) }
+  .card-img > img { transition: transform 0.5s ease }
+  .card-img:hover > img { transform: scale(1.04) }
 }
 
 @media (prefers-reduced-motion: no-reduce) {
   @keyframes rise {
-    from { opacity: 0; transform: translateY(0.5rem) }
+    from { opacity: 0; transform: translateY(0.6rem) }
   }
-  main > section { animation: rise 0.45s ease-out backwards }
-  main > section:nth-child(2) { animation-delay: 0.05s }
-  main > section:nth-child(3) { animation-delay: 0.1s }
-  main > section:nth-child(4) { animation-delay: 0.15s }
-  main > section:nth-child(5) { animation-delay: 0.2s }
-  main > section:nth-child(6) { animation-delay: 0.25s }
-  main > section:nth-child(7) { animation-delay: 0.3s }
+  @keyframes sheen {
+    to { background-position: 160% 0 }
+  }
+  @keyframes drift {
+    to { transform: translate3d(-2rem, 1.2rem, 0) scale(1.05) }
+  }
+  main > section { animation: rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards }
+  main > section:nth-child(2) { animation-delay: 0.06s }
+  main > section:nth-child(3) { animation-delay: 0.12s }
+  main > section:nth-child(4) { animation-delay: 0.18s }
+  main > section:nth-child(5) { animation-delay: 0.24s }
+  main > section:nth-child(6) { animation-delay: 0.3s }
+  main > section:nth-child(7) { animation-delay: 0.36s }
+  main > section:nth-child(8) { animation-delay: 0.42s }
+  header::after { animation: sheen 11s ease-in-out infinite }
+  body::before { animation: drift 26s ease-in-out infinite alternate }
+}
+
+@supports (backdrop-filter: blur(2px)) {
+  nav { background: color-mix(in srgb, var(--bg) 78%, transparent) }
+  nav { backdrop-filter: blur(7px) saturate(150%) }
+}
+
+@media (max-width: 46rem) {
+  #skills,
+  #certs,
+  #projects { grid-template-columns: 1fr }
+  .avatar { width: 4.6rem; height: 4.6rem }
+  h1 { font-size: 1.65rem }
+  header { padding: 1.1rem 0.9rem }
 }
 
 @media print {
   nav { display: none }
   .card,
   header,
-  footer { background: white; color: black }
+  footer { background: white; color: black; box-shadow: none }
+  .button,
+  .tags li { background: white; color: black }
 }
