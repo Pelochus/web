@@ -38,6 +38,12 @@ published at all. Adding a `mailto:` href puts the address back within reach of
 collectors; if you do, the CSP header below does not need to change, but the
 protection does.
 
+## Conventions
+
+Rules for anyone — human or agent — editing this page live in [AGENTS.md](AGENTS.md):
+the design bar (simple, fast to load, dependency-free), the commit style, and the
+git caveats specific to this repository.
+
 ## Deploying
 
 There is nothing to compile or install. Copy the repository contents to the web
