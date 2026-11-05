@@ -9,21 +9,21 @@ issues exactly one request per visitor: itself.
 
 | Path | Role |
 | --- | --- |
-| `index.html` | all copy, structure, and the inline brand marks |
-| `style.css` | palette tokens, layout, animations, and the theme switch |
-| `assets/CV.pdf` | the CV offered for download |
-| `assets/pfp.webp` | avatar |
-| `assets/rockobot.webp`, `assets/ezrknpu.svg` | project images |
-| `favicon.svg` | icon |
+| `site/index.html` | all copy, structure, and the inline brand marks |
+| `site/style.css` | palette tokens, layout, animations, and the theme switch |
+| `site/assets/CV.pdf` | the CV offered for download |
+| `site/assets/pfp.webp` | avatar |
+| `site/assets/rockobot.webp`, `site/assets/ezrknpu.svg` | project images |
+| `site/favicon.svg` | icon |
 
-Everything the page needs lives in those files. To add a project: a `card-img`
-block in `index.html`, its image wrapped in `<a class="card-link">` (the image is
-the link, no link text), and an image in `assets/`.
+Everything the page needs lives in those files, inside `site/`. To add a project:
+a `card-img` block in `site/index.html`, its image wrapped in `<a class="card-link">`
+(the image is the link, no link text), and an image in `site/assets/`.
 
 ## Theme
 
 Auto / Light / Dark radio buttons in the nav; Auto follows `prefers-color-scheme`.
-Edit the token blocks at the top of `style.css`; the dark block is duplicated for
+Edit the token blocks at the top of `site/style.css`; the dark block is duplicated for
 system-dark and forced-dark, keep both in sync.
 
 ## Conventions
@@ -32,10 +32,10 @@ See [AGENTS.md](AGENTS.md) for the design, commit, and git rules.
 
 ## Deploying
 
-Nothing to compile; copy the repo to the web root:
+Nothing to compile; copy `site/` to the web root:
 
 ```bash
-rsync -a --delete ./ web-root/
+rsync -a --delete ./site/ web-root/
 ```
 
 The nginx config declares the MIME types this site needs, caches the long-lived

@@ -1,6 +1,7 @@
 # AGENTS.md — rules for this repository
 
-Scope: the personal page in this repo — `index.html`, `style.css`, `favicon.svg`, `assets/`.
+Scope: the personal page in this repo — `site/index.html`, `site/style.css`,
+`site/favicon.svg`, `site/assets/`.
 
 ## Design
 
@@ -9,16 +10,18 @@ Scope: the personal page in this repo — `index.html`, `style.css`, `favicon.sv
 - Default stack is hand-written HTML + CSS: no build step, no dependencies, no
   frameworks. JS/TS is allowed when it is genuinely worth it, and only if it does
   not weaken security or maintainability; keep it to a minimum.
-- No remote or hotlinked assets: everything ships inside `assets/`.
+- The served tree is `site/`: only what is inside it is deployed, so repo-root
+  docs are never part of the page.
+- No remote or hotlinked assets: everything ships inside `site/assets/`.
 - No email and no phone number in the markup. The address is assembled from CSS
   fragments (`.obf::after`); never add a `mailto:` href.
 - CSP is declared twice on purpose: `<meta http-equiv>` on the document and `add_header`
   in the nginx config, because framed pages ignore `<meta>` CSP. Keep both in sync.
-- Palette is token-driven at the top of `style.css`; light/dark is CSS-only radio
+- Palette is token-driven at the top of `site/style.css`; light/dark is CSS-only radio
   buttons in the nav (`:has()`), no JS and no cookie.
 - Animations stay cheap (`transform` and `opacity` only) and every one is guarded by
   `prefers-reduced-motion`.
-- One `style.css`, no duplicated selectors. The CSS checker flags duplicate
+- One `site/style.css`, no duplicated selectors. The CSS checker flags duplicate
   declarations — fix them the moment they appear.
 - Verify with the CSS and HTML checkers. There is no headless browser on this host, so
   visual changes are reviewed by reading the CSS, not by screenshot.
