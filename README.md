@@ -11,13 +11,14 @@ issues exactly one request per visitor: itself.
 | --- | --- |
 | `index.html` | all copy, structure, and the inline brand marks |
 | `style.css` | palette tokens, layout, animations, and the theme switch |
-| `assets/CV.pdf` | the CV offered for download (its size is quoted in the page text) |
+| `assets/CV.pdf` | the CV offered for download |
 | `assets/pfp.webp` | avatar |
 | `assets/rockobot.webp`, `assets/ezrknpu.svg` | project images |
 | `favicon.svg` | icon |
 
 Everything the page needs lives in those files. To add a project: a `card-img`
-block in `index.html` and an image in `assets/`.
+block in `index.html`, its image wrapped in `<a class="card-link">` (the image is
+the link, no link text), and an image in `assets/`.
 
 ## Theme
 
